@@ -4,10 +4,13 @@ import { FlexLayoutModule } from "@angular/flex-layout";
 import { FormsModule ,ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+//MODULOS
 import { LoginModule } from "./module/login/login.module";
+import { CalendarioEmpresaModule } from "./module/calendario-empresa/calendario-empresa.module";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from "@angular/common/http";
 import { CookieService } from 'ngx-cookie-service';
+// import { RecaptchaModule } from 'ng-recaptcha';
 @NgModule({
   declarations: [
     AppComponent
@@ -17,10 +20,12 @@ import { CookieService } from 'ngx-cookie-service';
     FormsModule,
     ReactiveFormsModule,
     LoginModule,
+    CalendarioEmpresaModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     FlexLayoutModule,
-    HttpClientModule
+    HttpClientModule,
+    // RecaptchaModule,
   ],
   providers: [CookieService],
   bootstrap: [AppComponent],

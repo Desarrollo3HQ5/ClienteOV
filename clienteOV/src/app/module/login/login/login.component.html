@@ -1,7 +1,10 @@
+
+
 <body>
 <div id="container" [ngClass]="forma">
 	<div form-container sign-up-container>
 		<form class="form-container sign-up-container" [formGroup]="verifiForm" (ngSubmit)="verificarId()">
+			<img class="logohq5Roja" src="../../../../assets/ManoHq5.png">
 			<h1>Verificar información</h1>
       <span>Nuestras redes sociales</span>
 			<div class="social-container">
@@ -14,7 +17,7 @@
 		</form>
 	</div>
 	<div class="form-container sign-in-container" >
-		<form [formGroup]="ingresoForm" (ngSubmit)="sendback()">
+		<form [formGroup]="ingresoForm" (ngSubmit)="sendback()" novalidate>
 			<h1>Iniciar sesión</h1>
       <span>Nuestras redes sociales</span>
 			<div class="social-container">
@@ -23,9 +26,19 @@
 				<a href="https://co.linkedin.com/company/hq5-sas" class="social"><i class="fab fa-linkedin-in"></i></a>
 			</div>
 			<input type="text" placeholder="Identificación" formControlName="identificacion" />
+			<div *ngIf="ingresoForm.get('identificacion').errors && ingresoForm.get('identificacion').dirty || ingresoForm.get('identificacion').touched">
+				<h4 *ngIf="ingresoForm.get('identificacion').hasError('required')">*El usuario es requerido</h4>
+				<h4 *ngIf="ingresoForm.get('identificacion').hasError('minlength')">*El usuario debe tener mininmo 5 caracteres</h4>
+			</div>
 			<input type="password" placeholder="Contraseña" formControlName="password"/>
-			<a href="#">Olvidaste la contraseña?</a>
-			<button >Ingresar</button>
+			<div *ngIf="ingresoForm.get('password').errors && ingresoForm.get('password').dirty || ingresoForm.get('password').touched">
+				<h4 *ngIf="ingresoForm.get('password').hasError('required')">*La contraseña es requerida</h4>
+			</div>
+			<a href="recoverypassword">Olvidaste la contraseña?</a>
+			<!-- (resolved)="resolved($event)"  -->
+			<re-captcha (resolved)="resolved($event)" siteKey="6LeAPkElAAAAAIvroxu2ATTrhG3CpFVzFZ9dAd4I"></re-captcha>
+			<!-- <div class="g-recaptcha" data-sitekey="6LeAPkElAAAAAIvroxu2ATTrhG3CpFVzFZ9dAd4I"></div> -->
+			<button type="submit" [disabled]="ingresoForm.invalid || !captchaResolved">Ingresar</button>
 		</form>
 	</div>
 	<div class="overlay-container">
@@ -36,6 +49,7 @@
 				<button class="ghost" id="signIn" (click)="loggeo()">Iniciar sesión</button>
 			</div>
 			<div class="overlay-panel overlay-right">
+				<img class="logohq5" src="../../../../assets/ManoHq5Blanca.png">
 				<h1>Hola!</h1>
 				<p>Ingresa tus datos para verificar si estas registrado en nuestro sistema</p>
 				<button class="ghost" id="signUp" (click)="verificar()">Verificar</button>
@@ -44,39 +58,3 @@
 	</div>
 </div>
 </body>
-
-<!-- <div  class="login" >
-  <form class="custom-form" [formGroup]="profileForm" (ngSubmit)="sendback()">
-    <h1>LOGIN</h1>
-    <div class="mb-3">
-      <label for="disabledTextInput" class="form-label">Identificación</label>
-      <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp" formControlName="identificacion">
-      <input type="password" class="form-control" id="inputPaswword" aria-describedby="emailHelp" formControlName="password">
-   
-    </div>
-    <button type="submit" class="btn btn-primary" >Submit</button>
-</form>
-
-</div>
-
-<div class="mb-3" *ngIf='TusuarioModel[0]'>
-  <table class="table">
-    <thead>
-      <tr>
-        <th scope="col">Nombre</th>
-        <th scope="col">Identificación</th>
-        <th scope="col">Proceso/Contrato</th>
-        <th scope="col">Proceso</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let item of TusuarioModel">
-        <td>{{item.nombre}}</td>
-        <td>{{item.identificacion}}</td>
-        <td>{{item.IDproceso}}</td>
-        <td>{{item.proceso}}</td>
-        </tr>
-      
-    </tbody>
-  </table>
-</div> -->

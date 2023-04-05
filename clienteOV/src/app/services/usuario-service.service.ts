@@ -13,12 +13,13 @@ import { tusuarioModel } from "../models/tusuario-model.models";
   export class usuarioServiceService {
     public httpOptions = {
         headers: new HttpHeaders({
-          'Content-Type':  'application/json'
+          'Content-Type':  'application/json',
+          "authorization": this.getToken()
         })
     };
     
     private dominioURL =  "http://localhost:7000/"
-    private GetusuarioURL = this.dominioURL + "usuario/";
+    private GetusuarioURL = this.dominioURL + "authLogin/";
     private getipoUsuarioURl = this.dominioURL + "tipousuario/"
 
     constructor(private http: HttpClient, private cookies: CookieService) {}
@@ -26,8 +27,9 @@ import { tusuarioModel } from "../models/tusuario-model.models";
         return this.http.get(this.GetusuarioURL);
       }
     
-    public postUser(newUsuario: UsuarioModel):Observable<any>{
-        return this.http.post<any>(this.GetusuarioURL,newUsuario);
+    public postUser(newUsuario: UsuarioModel, ruta:string,):Observable<any>{
+      console.log("BACK")
+        return this.http.post<any>(this.dominioURL + ruta,newUsuario,this.httpOptions);
       }
 
       //COOKIES
