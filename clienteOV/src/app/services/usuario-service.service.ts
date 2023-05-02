@@ -23,12 +23,12 @@ import { tusuarioModel } from "../models/tusuario-model.models";
     private getipoUsuarioURl = this.dominioURL + "tipousuario/"
 
     constructor(private http: HttpClient, private cookies: CookieService) {}
-    public getUsuario(_id: string){
-        return this.http.get(this.GetusuarioURL);
+    public getUsuario(newUsuario: {}, ruta:string){
+        return this.http.post<any>(this.dominioURL + ruta,newUsuario,this.httpOptions);
       }
     
-    public postUser(newUsuario: UsuarioModel, ruta:string,):Observable<any>{
-      console.log("BACK")
+    public postUser(newUsuario: UsuarioModel, ruta:string):Observable<any>{
+      // console.log(this.httpOptions)
         return this.http.post<any>(this.dominioURL + ruta,newUsuario,this.httpOptions);
       }
 
@@ -37,6 +37,7 @@ import { tusuarioModel } from "../models/tusuario-model.models";
         this.cookies.set("token",token);
       }
       getToken() {
+        console.log(this.cookies.get("token"))
         return this.cookies.get("token");
       }
 

@@ -69,7 +69,7 @@ export class LoginComponent{
           this.UsuarioService.postUser(this.newUsuario,"sign/").subscribe(
             res => {
               console.log('HTTP response', res);
-              this.router.navigate(['/me'])
+              this.router.navigate(['/calendario'])
             },
             err => console.log('HTTP Error', err),
             () => console.log('HTTP request completed.')
