@@ -69,7 +69,7 @@ export class LoginComponent{
           this.UsuarioService.postUser(this.newUsuario,"sign/").subscribe(
             res => {
               console.log('HTTP response', res);
-              this.router.navigate(['/calendario'])
+              this.router.navigate(['/homemisional'])
             },
             err => console.log('HTTP Error', err),
             () => console.log('HTTP request completed.')
@@ -82,7 +82,7 @@ export class LoginComponent{
     )
   }
   verificarId(){
-
+    
   }
   //Función para el captcha
   resolved(captchaResponse: string) {
