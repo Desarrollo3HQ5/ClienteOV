@@ -13,4 +13,6 @@ import { CalendarioComponentComponent } from './calendario-component/calendario-
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
-export class CalendarioEmpresaModule { }
+export class CalendarioEmpresaModule {
+  
+ }
